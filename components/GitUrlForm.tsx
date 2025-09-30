@@ -179,12 +179,27 @@ export default function GitUrlForm() {
       </form>
 
       {models && parsed && (
-        <div style={{ marginTop: '2rem', borderTop: '1px solid #e5e7eb', paddingTop: '2rem' }}>
+        <div style={{ marginTop: '2rem' }}>
           <ModelSelector 
             models={models} 
             repoOwner={parsed.owner} 
             repoName={parsed.repo} 
           />
+        </div>
+      )}
+      
+      {/* Debug: Show raw model data */}
+      {models && models.length > 0 && (
+        <div style={{ 
+          marginTop: '1rem', 
+          padding: '1rem', 
+          background: '#f3f4f6', 
+          borderRadius: '0.5rem',
+          fontSize: '0.75rem',
+          fontFamily: 'monospace'
+        }}>
+          <strong>Debug - Detected Models:</strong>
+          <pre>{JSON.stringify(models, null, 2)}</pre>
         </div>
       )}
     </div>

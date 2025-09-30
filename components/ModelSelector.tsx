@@ -78,7 +78,7 @@ export default function ModelSelector({ models, repoOwner, repoName }: ModelSele
     <div className="glass-card">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold mb-2" style={{ color: '#1f2937' }}>
-          🎯 Available Models
+          🎯 Available Models ({models.length} found)
         </h2>
         <p style={{ color: '#4b5563' }}>
           Select a model to run inference
