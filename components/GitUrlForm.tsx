@@ -41,12 +41,18 @@ export default function GitUrlForm() {
       setFiles(tree);
       const detected = detectModels(tree);
       setModels(detected);
-    } catch (err) {
-      if (typeof err === 'object' && err !== null && 'response' in err) {
-        // @ts-expect-error: dynamic error shape
-        setError((err as any)?.response?.data?.message || (err as Error).message || "Failed to fetch repo tree");
+    } catch (err: unknown) {
+      if (
+        typeof err === 'object' &&
+        err !== null &&
+        'response' in err &&
+        typeof (err as { response?: { data?: { message?: string } } }).response?.data?.message === 'string'
+      ) {
+        setError((err as { response: { data: { message: string } } }).response.data.message);
+      } else if (err instanceof Error) {
+        setError(err.message);
       } else {
-        setError((err as Error).message || "Failed to fetch repo tree");
+        setError("Failed to fetch repo tree");
       }
     } finally {
       setLoading(false);
