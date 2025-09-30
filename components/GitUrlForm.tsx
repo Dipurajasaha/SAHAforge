@@ -46,7 +46,8 @@ export default function GitUrlForm() {
         typeof err === 'object' &&
         err !== null &&
         'response' in err &&
-        typeof (err as { response?: { data?: { message?: string } } }).response?.data?.message === 'string'
+        typeof (err as Record<string, unknown>).response === 'object' &&
+        (err as { response?: { data?: { message?: string } } }).response?.data?.message
       ) {
         setError((err as { response: { data: { message: string } } }).response.data.message);
       } else if (err instanceof Error) {
