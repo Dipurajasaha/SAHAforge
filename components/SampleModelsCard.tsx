@@ -15,29 +15,29 @@ const SAMPLES = [
 
 export default function SampleModelsCard() {
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
+    <div className="glass-card">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">🚀 Try a Sample Model</h2>
-        <p className="text-gray-600">Quick start with pre-configured models</p>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: '#1f2937' }}>🚀 Try a Sample Model</h2>
+        <p style={{ color: '#4b5563' }}>Quick start with pre-configured models</p>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="sample-grid">
         {SAMPLES.map((sample, i) => (
           <a
             key={i}
             href={sample.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+            className="sample-card"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex" style={{ alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
                 <h3 className="font-bold text-lg mb-1">{sample.label}</h3>
-                <p className="text-blue-100 text-sm opacity-90">
+                <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                   {sample.type.toUpperCase()} Model
                 </p>
               </div>
-              <div className="text-2xl group-hover:scale-110 transition-transform">
+              <div className="text-2xl">
                 🔗
               </div>
             </div>
@@ -46,7 +46,13 @@ export default function SampleModelsCard() {
       </div>
       
       <div className="mt-6 text-center">
-        <p className="text-sm text-gray-500 bg-gray-50 rounded-lg px-4 py-2 inline-block">
+        <p className="text-sm" style={{ 
+          color: '#6b7280', 
+          background: '#f9fafb', 
+          borderRadius: '0.5rem', 
+          padding: '0.5rem 1rem',
+          display: 'inline-block'
+        }}>
           💡 Opens model file in a new tab for demo/testing
         </p>
       </div>
