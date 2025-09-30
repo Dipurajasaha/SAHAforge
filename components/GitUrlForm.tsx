@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ModelSelector from "./ModelSelector";
-import { getDefaultBranch, getRepoTree, RepoTreeItem } from "../lib/github";
+import { getDefaultBranch, getRepoTree } from "../lib/github";
 import { detectModels, ModelDescriptor } from "../lib/detectModel";
 
 interface ParsedRepo {
@@ -21,14 +21,12 @@ function parseGitHubUrl(url: string): ParsedRepo | null {
 export default function GitUrlForm() {
   const { register, handleSubmit, formState: { errors } } = useForm<{ url: string }>();
   const [parsed, setParsed] = useState<ParsedRepo | null>(null);
-  const [files, setFiles] = useState<RepoTreeItem[] | null>(null);
   const [models, setModels] = useState<ModelDescriptor[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (data: { url: string }) => {
     setError(null);
-    setFiles(null);
     setModels(null);
     const result = parseGitHubUrl(data.url);
     setParsed(result);
@@ -37,7 +35,6 @@ export default function GitUrlForm() {
     try {
       const branch = await getDefaultBranch(result.owner, result.repo);
       const tree = await getRepoTree(result.owner, result.repo, branch);
-      setFiles(tree);
       const detected = detectModels(tree);
       setModels(detected);
     } catch (err: unknown) {
