@@ -41,8 +41,13 @@ export default function GitUrlForm() {
       setFiles(tree);
       const detected = detectModels(tree);
       setModels(detected);
-    } catch (err: any) {
-      setError(err?.response?.data?.message || err.message || "Failed to fetch repo tree");
+    } catch (err) {
+      if (typeof err === 'object' && err !== null && 'response' in err) {
+        // @ts-expect-error: dynamic error shape
+        setError((err as any)?.response?.data?.message || (err as Error).message || "Failed to fetch repo tree");
+      } else {
+        setError((err as Error).message || "Failed to fetch repo tree");
+      }
     } finally {
       setLoading(false);
     }

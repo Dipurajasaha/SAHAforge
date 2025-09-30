@@ -1,11 +1,12 @@
 import type { RepoTreeItem } from "./github";
 
+
 export type ModelType = "onnx" | "tfjs" | "huggingface";
 
 export interface ModelDescriptor {
   type: ModelType;
   path: string;
-  inputSpec?: any;
+  inputSpec?: unknown;
   labels?: string[];
   configFile?: string;
 }

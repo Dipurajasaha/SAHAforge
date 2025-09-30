@@ -1,7 +1,7 @@
 import React from "react";
 
 interface RawOutputProps {
-  output: any;
+  output: unknown;
 }
 
 export default function RawOutput({ output }: RawOutputProps) {
