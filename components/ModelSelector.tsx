@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormBuilder from "./FormBuilder";
 import type { ModelDescriptor } from "../lib/detectModel";
 
 interface ModelSelectorProps {
@@ -20,11 +21,33 @@ export default function ModelSelector({ models, repoOwner, repoName }: ModelSele
     setResult(null);
 
     try {
-      // For now, just simulate loading the model
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setResult(`✅ Model "${model.path}" loaded successfully! Ready for inference.`);
+      // Simulate loading the model
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setResult(`✅ Model "${model.path}" loaded successfully! Configure inputs below.`);
     } catch (err) {
       setError(`❌ Failed to load model: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleInputsReady = (inputs: any) => {
+    // Store inputs for inference
+    console.log('Inputs ready:', inputs);
+  };
+
+  const handleRunInference = async () => {
+    if (!selectedModel) return;
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      // Simulate inference
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setResult(`🎉 Inference completed! Results would appear here in a real implementation.`);
+    } catch (err) {
+      setError(`❌ Inference failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setIsLoading(false);
     }
@@ -177,7 +200,7 @@ export default function ModelSelector({ models, repoOwner, repoName }: ModelSele
       )}
 
       {/* Success Result */}
-      {result && (
+      {result && !isLoading && (
         <div className="status-card status-success">
           <div className="flex" style={{ alignItems: 'center' }}>
             <svg style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,11 +208,17 @@ export default function ModelSelector({ models, repoOwner, repoName }: ModelSele
             </svg>
             <span className="font-medium">{result}</span>
           </div>
-          <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '0.5rem' }}>
-            <p className="text-sm" style={{ opacity: 0.9 }}>
-              🚀 <strong>Next steps:</strong> Upload an image or provide input data to run inference with this model.
-            </p>
-          </div>
+        </div>
+      )}
+
+      {/* Model Interface - Show FormBuilder when model is loaded */}
+      {selectedModel && result && !isLoading && (
+        <div style={{ marginTop: '2rem' }}>
+          <FormBuilder
+            model={selectedModel}
+            onInputsReady={handleInputsReady}
+            onRunInference={handleRunInference}
+          />
         </div>
       )}
 
