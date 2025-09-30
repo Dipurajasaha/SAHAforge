@@ -105,6 +105,35 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+/* Model card hover effects */
+.model-card:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.model-card:active {
+  transform: translateY(0) scale(1.01) !important;
+}
+
+/* Smooth transitions for model selection */
+.model-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Pulse animation for selected model */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.5);
+  }
+}
+
+.model-card-selected {
+  animation: pulse 2s infinite;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .container {

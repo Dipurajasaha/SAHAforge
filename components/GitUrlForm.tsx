@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import RepoFileList from "./RepoFileList";
-import ModelDetectPreview from "./ModelDetectPreview";
+import ModelSelector from "./ModelSelector";
 import { getDefaultBranch, getRepoTree, RepoTreeItem } from "../lib/github";
 import { detectModels, ModelDescriptor } from "../lib/detectModel";
 
@@ -179,15 +178,13 @@ export default function GitUrlForm() {
         )}
       </form>
 
-      {files && (
+      {models && parsed && (
         <div style={{ marginTop: '2rem', borderTop: '1px solid #e5e7eb', paddingTop: '2rem' }}>
-          <RepoFileList files={files} />
-        </div>
-      )}
-
-      {models && (
-        <div style={{ marginTop: '2rem', borderTop: '1px solid #e5e7eb', paddingTop: '2rem' }}>
-          <ModelDetectPreview models={models} />
+          <ModelSelector 
+            models={models} 
+            repoOwner={parsed.owner} 
+            repoName={parsed.repo} 
+          />
         </div>
       )}
     </div>
