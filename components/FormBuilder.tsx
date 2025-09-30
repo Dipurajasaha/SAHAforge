@@ -40,31 +40,3 @@ export default function FormBuilder({ inputSpec, onInput }: FormBuilderProps) {
     </form>
   );
 }
-  const [form, setForm] = React.useState<Record<string, unknown>>({});
-
-  function handleChange(name: string, value: unknown) {
-    setForm(f => {
-      const updated = { ...f, [name]: value };
-      onInput(updated);
-      return updated;
-    });
-  }
-
-  return (
-    <form className="space-y-4">
-      {inputSpec.map(input => (
-        <div key={input.name}>
-          {input.type === "image" && (
-            <input type="file" accept="image/*" onChange={e => e.target.files && handleChange(input.name, e.target.files[0])} />
-          )}
-          {input.type === "text" && (
-            <input type="text" placeholder={input.label || input.name} onChange={e => handleChange(input.name, e.target.value)} className="border rounded px-3 py-2 w-full" />
-          )}
-          {input.type === "csv" && (
-            <input type="file" accept=".csv" onChange={e => e.target.files && handleChange(input.name, e.target.files[0])} />
-          )}
-        </div>
-      ))}
-    </form>
-  );
-}
