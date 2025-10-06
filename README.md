@@ -1,7 +1,6 @@
 # SAHAforge 🚀
 🚧 *Status: Under Development* 🚧
 
-<div align="center">
 
 ![SAHAforge Logo](https://img.shields.io/badge/SAHAforge-ML%20Repository%20Runner-blue?style=for-the-badge)
 
