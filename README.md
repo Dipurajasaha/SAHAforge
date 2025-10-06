@@ -7,16 +7,6 @@
 
 **Run any Machine Learning repository virtually without setup**
 
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
-
-[Features](#features) • [Quick Start](#quick-start) • [How It Works](#how-it-works) • [Documentation](#documentation) • [Contributing](#contributing)
-
-</div>
-
----
-
 ## 📖 Overview
 
 SAHAforge is an innovative platform that eliminates the complexity of setting up and running machine learning repositories. Simply provide a GitHub repository link containing an ML model, and SAHAforge will:
