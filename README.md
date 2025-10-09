@@ -6,6 +6,21 @@
 
 **Run any Machine Learning repository virtually without setup**
 
+---
+
+## 🎨 NEW: GitHub Profile README Template
+
+Looking to create an impressive GitHub profile? Check out our [GitHub Profile README Template](PROFILE_README.md)!
+
+- ✨ Modern, eye-catching design
+- 📊 Dynamic stats and metrics
+- 🎯 Customizable themes and colors
+- 🐍 Contribution snake animation
+- 📚 Comprehensive [setup guide](PROFILE_SETUP_GUIDE.md)
+- 🎨 [Customization examples](PROFILE_CUSTOMIZATION_EXAMPLES.md)
+
+[View Template →](PROFILE_README.md) | [Setup Guide →](PROFILE_SETUP_GUIDE.md)
+
 ## 📖 Overview
 
 SAHAforge is an innovative platform that eliminates the complexity of setting up and running machine learning repositories. Simply provide a GitHub repository link containing an ML model, and SAHAforge will:
